@@ -1,11 +1,14 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import "./menubar.css"
 import {assets} from "../../assets/assets"
 import { Link } from 'react-router-dom'
+import { StoreContext } from '../../context/StoreContext'
 
 
 
 const Menubar = () => {
+  const {quantities}=useContext(StoreContext)
+  const uniqueItemInCart=Object.values(quantities).filter(qty=>qty>0).length
   return (
     <>
     <nav className="navbar navbar-expand-lg bg-body-tertiary">
@@ -26,10 +29,10 @@ const Menubar = () => {
           <Link className="nav-link active" aria-current="page" to="/contact">Contact us</Link>
         </li>
       </ul>
-      <div className='cart'>
+      <Link to={"/cart"} className='cart'>
         <img src={assets.bag_icon} alt="" />
-        <span className='counter'>5</span>
-      </div>
+        <span className='counter'>{uniqueItemInCart}</span>
+      </Link>
 
       <button className='btn btn-outline-primary mx-4'>Login</button>
        <button className='btn btn-outline-success'>Register</button>

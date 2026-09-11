@@ -2,6 +2,7 @@ import React, { useContext } from 'react'
 import { StoreContext } from '../../context/StoreContext'
 import "./foodDisplay.css"
 import { Link } from 'react-router-dom'
+import FoodItem from '../Food Item/FoodItem'
 
 const FoodDisplay = ({category,searchText}) => {
     const { foodList } = useContext(StoreContext)
@@ -18,18 +19,7 @@ const FoodDisplay = ({category,searchText}) => {
                         filteredFoodList.length > 0 ? (<>
                             {
                                 filteredFoodList.map((item, index) => {
-                                    return <div key={item.id} className='food-card'>
-                                        <div>
-                                            <img src={item.imageUrl} alt="" height={120} width={120} />
-                                        </div>
-                                        <p>{item.name}</p>
-                                        <p>{item.description}</p>
-                                        <p>{item.category}</p>
-                                        <p>{item.price}</p>
-                                        <div>
-                                            <Link to={`/food/${item.id}`}>View Food</Link>
-                                        </div>
-                                    </div>
+                                    return <FoodItem item={item} index={index}/>
                                 })
                             }
 

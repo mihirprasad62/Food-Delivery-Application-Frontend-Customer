@@ -1,6 +1,9 @@
 .food-box{
     display: flex;
     gap: 30px;
+    justify-content: space-between;
+    
+    flex-wrap: wrap;
 }
 .food-card{
     border: 1px solid black;
