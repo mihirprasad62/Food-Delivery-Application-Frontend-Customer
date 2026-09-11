@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom'
 const FoodDisplay = ({category}) => {
     const { foodList } = useContext(StoreContext)
     console.log(foodList)
-    foodList.filter(food=>(
+    const filteredFoodList=foodList.filter(food=>(
         category==="All" || food.category===category
     ))
     return (
@@ -14,9 +14,9 @@ const FoodDisplay = ({category}) => {
             <div className="container">
                 <div className="food-box">
                     {
-                        foodList.length > 0 ? (<>
+                        filteredFoodList.length > 0 ? (<>
                             {
-                                foodList.map((item, index) => {
+                                filteredFoodList.map((item, index) => {
                                     return <div key={item.id} className='food-card'>
                                         <div>
                                             <img src={item.imageUrl} alt="" height={120} width={120} />
