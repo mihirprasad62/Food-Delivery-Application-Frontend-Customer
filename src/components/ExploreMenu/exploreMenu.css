@@ -1,0 +1,14 @@
+.container{
+    max-width: 1200px;
+    width: 90%;
+    margin: 0 auto;
+}
+.menu-list-container{
+    margin-top: 10px;
+ 
+    display: flex;
+    gap: 30px;
+}
+.select-menu{
+    border: 4px solid red;
+}

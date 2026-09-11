@@ -1,0 +1,7 @@
+.food-box{
+    display: flex;
+    gap: 30px;
+}
+.food-card{
+    border: 1px solid black;
+}
