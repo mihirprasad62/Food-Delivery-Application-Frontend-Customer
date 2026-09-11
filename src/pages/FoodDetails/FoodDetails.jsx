@@ -1,23 +1,25 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import "./foodDetails.css"
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import axios from 'axios'
 import { fetchFoodDetails } from '../../services/foodService'
 import { toast } from 'react-toastify'
+import { StoreContext } from '../../context/StoreContext'
 
 const FoodDetails = () => {
     const {id} =useParams()
 
     const [data,setData]=useState({})
+    const {  increaseQuantity } = useContext(StoreContext)
 
-    // const fetchFoodDetails=async(id)=>{
-    //     const response=await axios.get('http://localhost:8080/api/foods/'+id)
-    //     if(response.status===200){
-    //         setData(response.data)
-    //         console.log(response.data);
-            
-    //     }
-    // }
+   const navigate= useNavigate()
+
+    const addToCart=()=>{
+        increaseQuantity(data.id)
+        navigate("/cart")
+    }
+
+
     useEffect(()=>{
 
         const loadFoodDetails=async ()=>{
@@ -45,7 +47,7 @@ const FoodDetails = () => {
         <p>{data.category}</p>
         <p>{data.description}</p>
 
-        <button>Add To cart</button>
+        <button onClick={addToCart}>Add To cart</button>
         </div>
     </div>
     </>

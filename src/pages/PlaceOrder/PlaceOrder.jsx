@@ -1,6 +1,7 @@
 import React, { useContext } from 'react'
 import "./placeOrder.css"
 import { StoreContext } from '../../context/StoreContext'
+import { calculateCartTotals } from '../../utils/calculateCartTotals'
 
 const PlaceOrder = () => {
     const { foodList, quantities, setQuantities } = useContext(StoreContext)
@@ -9,13 +10,7 @@ const PlaceOrder = () => {
     const cartItems = foodList.filter(food => quantities[food.id] > 0)
 
     //calculating
-    const subtotal = cartItems.reduce((acc, food) => acc + food.price * quantities[food.id], 0)
-
-    const Shipping = subtotal === 0 ? 0.0 : 10;
-
-    const tax = subtotal * 0.1;
-
-    const total = subtotal + Shipping + tax;
+    const {subtotal,Shipping,tax,total}=calculateCartTotals(cartItems,quantities)
     return (
         <>
             <div style={{ maxWidth: "1200px", width: "90%", margin: "50px auto", border: "2px solid purple", display: "flex", gap: "10px" }} className="order-container">
@@ -41,8 +36,8 @@ const PlaceOrder = () => {
                         <input placeholder='Zip' style={{ width: "33%" }} type="number" />
 
                     </div>
-                    <div className="action">
-                        <input style={{ width: "100%" }} type="Submit" value={"Continue to Checkout"} />
+                    <div  className="action">
+                        <input disabled={cartItems.length==0} style={{ width: "100%" }} type="Submit" value={"Continue to Checkout"} />
                     </div>
                 </div>
 
