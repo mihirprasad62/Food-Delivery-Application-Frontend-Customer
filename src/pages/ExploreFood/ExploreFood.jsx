@@ -11,6 +11,7 @@ const ExploreFood = () => {
            <label htmlFor="category">Category</label>
 
         <select name="category" id="category" onChange={(e)=>setCategory(e.target.value)} >
+          <option value="All">All</option>
           <option value="Rolls">Rolls</option>
           <option value="Deserts">Deserts</option>
           <option value="Salad">Salad</option>

@@ -9,7 +9,7 @@ const Home = () => {
   return (
     <>
     <ExploreMenu category={category} setCatagory={setCatagory}/>
-    <FoodDisplay category={category}/>
+    <FoodDisplay category={category} searchText={""}/>
     </>
   )
 }

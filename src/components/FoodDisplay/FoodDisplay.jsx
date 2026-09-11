@@ -3,11 +3,12 @@ import { StoreContext } from '../../context/StoreContext'
 import "./foodDisplay.css"
 import { Link } from 'react-router-dom'
 
-const FoodDisplay = ({category}) => {
+const FoodDisplay = ({category,searchText}) => {
     const { foodList } = useContext(StoreContext)
     console.log(foodList)
     const filteredFoodList=foodList.filter(food=>(
-        category==="All" || food.category===category
+        (category==="All" || food.category===category) &&
+        food.name.toLowerCase().includes(searchText.toLowerCase())
     ))
     return (
         <>
